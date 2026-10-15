@@ -1,0 +1,283 @@
+{
+  "model": "vllm-sr/d3-edge",
+  "device": "cpu",
+  "limit": 20,
+  "seed": 42,
+  "protocol": "zero-shot system_one choice, n=20 stratified",
+  "skipped": [
+    {
+      "name": "persian_digits",
+      "reason": "HF 429 / multi-hour image download"
+    },
+    {
+      "name": "pn_summary_news",
+      "reason": "broken dataset script hf://datasets/pn_summary"
+    }
+  ],
+  "macro_accuracy": 0.55,
+  "datasets": [
+    {
+      "name": "snappfood",
+      "hf_id": "ParsiAI/snappfood-sentiment-analysis",
+      "task": "binary_sentiment",
+      "chance": 0.5,
+      "n_labels": 2,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 14,
+      "accuracy": 0.7,
+      "delta_vs_chance": 0.19999999999999996,
+      "mean_latency_s": 11.239,
+      "label_counts": {
+        "SAD": 10,
+        "HAPPY": 10
+      },
+      "confusion": {
+        "SAD->SAD": 8,
+        "SAD->HAPPY": 2,
+        "HAPPY->HAPPY": 6,
+        "HAPPY->SAD": 4
+      }
+    },
+    {
+      "name": "deepsentipers",
+      "hf_id": "mteb/DeepSentiPers",
+      "task": "ternary_sentiment",
+      "chance": 0.3333333333333333,
+      "n_labels": 3,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 16,
+      "accuracy": 0.8,
+      "delta_vs_chance": 0.46666666666666673,
+      "mean_latency_s": 11.137,
+      "label_counts": {
+        "positive": 7,
+        "negative": 7,
+        "neutral": 6
+      },
+      "confusion": {
+        "positive->positive": 4,
+        "negative->negative": 6,
+        "positive->neutral": 2,
+        "neutral->neutral": 6,
+        "negative->neutral": 1,
+        "positive->negative": 1
+      }
+    },
+    {
+      "name": "parsinlu_sentiment",
+      "hf_id": "persiannlp/parsinlu_sentiment",
+      "task": "aspect_sentiment",
+      "chance": 0.25,
+      "n_labels": 4,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 6,
+      "accuracy": 0.3,
+      "delta_vs_chance": 0.04999999999999999,
+      "mean_latency_s": 9.7015,
+      "label_counts": {
+        "negative": 5,
+        "none": 5,
+        "neutral": 5,
+        "positive": 5
+      },
+      "confusion": {
+        "negative->none": 4,
+        "none->positive": 2,
+        "neutral->none": 4,
+        "positive->positive": 2,
+        "negative->negative": 1,
+        "positive->none": 3,
+        "none->none": 2,
+        "neutral->neutral": 1,
+        "none->neutral": 1
+      }
+    },
+    {
+      "name": "farstail",
+      "hf_id": "dml-qom/FarsTail (official Test-word.csv)",
+      "task": "nli",
+      "chance": 0.3333333333333333,
+      "n_labels": 3,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 11,
+      "accuracy": 0.55,
+      "delta_vs_chance": 0.21666666666666673,
+      "mean_latency_s": 10.9075,
+      "label_counts": {
+        "c": 7,
+        "e": 7,
+        "n": 6
+      },
+      "confusion": {
+        "c->c": 4,
+        "e->e": 5,
+        "c->n": 1,
+        "n->e": 4,
+        "c->e": 2,
+        "e->n": 1,
+        "e->c": 1,
+        "n->n": 2
+      }
+    },
+    {
+      "name": "parsinlu_entailment",
+      "hf_id": "persiannlp/parsinlu_entailment",
+      "task": "nli",
+      "chance": 0.3333333333333333,
+      "n_labels": 3,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 10,
+      "accuracy": 0.5,
+      "delta_vs_chance": 0.16666666666666669,
+      "mean_latency_s": 8.4745,
+      "label_counts": {
+        "n": 7,
+        "c": 6,
+        "e": 7
+      },
+      "confusion": {
+        "n->n": 4,
+        "c->n": 3,
+        "e->c": 1,
+        "e->e": 5,
+        "c->e": 2,
+        "n->e": 3,
+        "c->c": 1,
+        "e->n": 1
+      }
+    },
+    {
+      "name": "parsinlu_paraphrase",
+      "hf_id": "persiannlp/parsinlu_query_paraphrasing",
+      "task": "paraphrase",
+      "chance": 0.5,
+      "n_labels": 2,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 14,
+      "accuracy": 0.7,
+      "delta_vs_chance": 0.19999999999999996,
+      "mean_latency_s": 7.3614999999999995,
+      "label_counts": {
+        "1": 10,
+        "0": 10
+      },
+      "confusion": {
+        "1->0": 3,
+        "1->1": 7,
+        "0->1": 3,
+        "0->0": 7
+      }
+    },
+    {
+      "name": "sid_classification",
+      "hf_id": "MCINext/sid-classification",
+      "task": "topic_classification",
+      "chance": 0.125,
+      "n_labels": 8,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 6,
+      "accuracy": 0.3,
+      "delta_vs_chance": 0.175,
+      "mean_latency_s": 35.3445,
+      "label_counts": {
+        "علوم انسانی": 2,
+        "کشاورزی و منابع طبیعی": 3,
+        "علوم پایه": 3,
+        "هنر و معماری": 3,
+        "فنی مهندسی": 2,
+        "دامپزشکی": 3,
+        "پزشکی": 2,
+        "علمی تخصصی": 2
+      },
+      "confusion": {
+        "علوم انسانی->علمی تخصصی": 1,
+        "کشاورزی و منابع طبیعی->کشاورزی و منابع طبیعی": 3,
+        "علوم پایه->علمی تخصصی": 2,
+        "هنر و معماری->علمی تخصصی": 2,
+        "فنی مهندسی->علمی تخصصی": 2,
+        "دامپزشکی->علوم انسانی": 2,
+        "دامپزشکی->علمی تخصصی": 1,
+        "پزشکی->علوم انسانی": 1,
+        "علوم انسانی->علوم انسانی": 1,
+        "علمی تخصصی->علوم انسانی": 1,
+        "پزشکی->علمی تخصصی": 1,
+        "علوم پایه->علوم انسانی": 1,
+        "علمی تخصصی->علمی تخصصی": 1,
+        "هنر و معماری->هنر و معماری": 1
+      }
+    },
+    {
+      "name": "parsinlu_mcqa",
+      "hf_id": "PartAI/ParsiNLU-multiple-choice",
+      "task": "multiple_choice_qa",
+      "chance": 0.25,
+      "n_labels": 4,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 7,
+      "accuracy": 0.35,
+      "delta_vs_chance": 0.09999999999999998,
+      "mean_latency_s": 6.4879999999999995,
+      "label_counts": {
+        "0": 5,
+        "1": 5,
+        "2": 5,
+        "3": 5
+      },
+      "confusion": {
+        "0->1": 2,
+        "1->2": 2,
+        "1->1": 1,
+        "2->0": 1,
+        "2->2": 3,
+        "0->3": 1,
+        "3->2": 2,
+        "3->3": 2,
+        "1->0": 2,
+        "0->0": 1,
+        "0->2": 1,
+        "2->1": 1,
+        "3->1": 1
+      }
+    },
+    {
+      "name": "persian_text_sentiment",
+      "hf_id": "SeyedAli/Persian-Text-Sentiment",
+      "task": "binary_sentiment",
+      "chance": 0.5,
+      "n_labels": 2,
+      "n": 20,
+      "answered": 20,
+      "errors": 0,
+      "correct": 15,
+      "accuracy": 0.75,
+      "delta_vs_chance": 0.25,
+      "mean_latency_s": 4.906499999999999,
+      "label_counts": {
+        "1": 10,
+        "0": 10
+      },
+      "confusion": {
+        "1->1": 6,
+        "0->0": 9,
+        "1->0": 4,
+        "0->1": 1
+      }
+    }
+  ]
+}

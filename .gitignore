@@ -1,0 +1,7 @@
+.venv/
+.cache/
+__pycache__/
+*.pyc
+dataset_preview.json
+results/partial.json
+results/d3_edge_persian_eval.json
